@@ -15,6 +15,13 @@ class CreateVehiclesTable extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('make_id');
+            $table->string('serialnum');
+            $table->string('model');
+            $table->string('engine');
+            $table->string('drivetraincount');
+            $table->string('doorcount');
+            $table->string('cylindernum');
             $table->timestamps();
         });
     }

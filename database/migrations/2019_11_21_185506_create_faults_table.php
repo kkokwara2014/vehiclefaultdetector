@@ -15,6 +15,13 @@ class CreateFaultsTable extends Migration
     {
         Schema::create('faults', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('category_id');
+            $table->integer('vehicle_id');
+            $table->integer('user_id');
+            $table->string('problem');
+            $table->string('cause');
+            $table->string('solution');
+            $table->string('imagename');
             $table->timestamps();
         });
     }
