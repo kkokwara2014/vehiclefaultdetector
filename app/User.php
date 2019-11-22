@@ -40,4 +40,13 @@ class User extends Authenticatable
     public function fault(){
         return $this->hasMany(Fault::class);
     }
+    public function complain(){
+        return $this->hasMany(Complain::class);
+    }
+    public function review(){
+        return $this->hasOne(Solutionreview::class);
+    }
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
 }
