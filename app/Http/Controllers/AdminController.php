@@ -16,7 +16,7 @@ class AdminController extends Controller
         // $pageTitle = 'Dashboard';
         // , compact('pageTitle')
         
-        return view('admin.home');
+        return view('admin.index');
     }
 
     /**
