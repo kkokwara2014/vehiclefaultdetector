@@ -15,6 +15,11 @@ class CreateSolutionreviewsTable extends Migration
     {
         Schema::create('solutionreviews', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedInteger('user_id');
+            $table->string('headline')->nullable();
+            $table->string('description')->nullable();
+            $table->string('rating')->nullable();
+            $table->tinyInteger('approved')->nullable();
             $table->timestamps();
         });
     }
