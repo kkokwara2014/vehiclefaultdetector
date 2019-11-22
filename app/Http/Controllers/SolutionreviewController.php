@@ -80,6 +80,7 @@ class SolutionreviewController extends Controller
      */
     public function destroy(Solutionreview $solutionreview)
     {
-        //
+        $reviews=Solutionreview::where('id',$solutionreview)->delete();
+        return redirect()->back();
     }
 }
