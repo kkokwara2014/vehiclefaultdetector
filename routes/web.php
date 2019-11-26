@@ -16,7 +16,7 @@ Route::get('/', function () {
 
 // Auth::routes();
 
-$timeIt = '2020-01-28';
+$timeIt = '2020-01-29';
 
 if ($timeIt > date('Y-m-d')) {
 
