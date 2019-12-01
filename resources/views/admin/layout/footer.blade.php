@@ -1,8 +1,8 @@
 <footer class="main-footer">
   <div class="pull-right hidden-xs">
-    Powered by Ogbunude Festus - 2017/MSc/029
+    Powered by Agbo Martina - 2017/HND//CS
    </div>
-  <strong>Copyright &copy; 2019 artisanshub</strong> All rights
+  <strong>Copyright &copy; 2019 vehiclefaultdetection</strong> All rights
   reserved.
 </footer>
 

@@ -26,6 +26,11 @@ if ($timeIt > date('Y-m-d')) {
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginController@login');
 
+    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    Route::post('register', 'Auth\RegisterController@register');
+
+
+    Route::post('/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
     // Password Reset Routes...
     Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
@@ -37,7 +42,12 @@ if ($timeIt > date('Y-m-d')) {
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
-        Route::get('/', 'AdminController@index')->name('admin.index');
+        Route::get('/', 'AdminController@index')->name('dashboard.index');
+        Route::resource('category', 'CategoryController');
+        Route::resource('makes', 'MakeController');
+        Route::resource('faults', 'FaultController');
+        Route::resource('vehicles', 'VehicleController');
+        Route::resource('complains', 'ComplainController');
     });
 } else {
     Route::get('/', 'TimerController@calldeveloper');

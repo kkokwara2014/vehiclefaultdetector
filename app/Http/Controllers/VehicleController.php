@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
+use App\Vehicle;
+use App\Make;
+
 class VehicleController extends Controller
 {
     /**
@@ -13,7 +17,11 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        
+        $vehicles=Vehicle::orderBy('created_at','desc')->get();
+        $makes=Make::orderBy('name','asc')->get();
+        return view('admin.vehicle.index',compact('vehicles','makes','user'));
     }
 
     /**

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
+use App\Make;
+
 class MakeController extends Controller
 {
     /**
@@ -13,7 +16,10 @@ class MakeController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        
+        $makes=Make::orderBy('name','asc')->get();
+        return view('admin.vehiclemake.index',compact('makes','user'));
     }
 
     /**
@@ -34,7 +40,13 @@ class MakeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string'
+        ]);
+
+        Make::create($request->all());
+
+        return back();
     }
 
     /**
@@ -56,7 +68,8 @@ class MakeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $makes = Make::where('id', $id)->first();;
+        return view('admin.vehiclemake.edit', array('user' => Auth::user()), compact('makes'));
     }
 
     /**
@@ -68,7 +81,16 @@ class MakeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string',
+        ]);
+
+        $make = Make::find($id);
+        $make->name = $request->name;
+
+        $make->save();
+
+        return redirect(route('makes.index'));
     }
 
     /**
@@ -79,6 +101,7 @@ class MakeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $makes = Make::where('id', $id)->delete();
+        return redirect()->back();
     }
 }

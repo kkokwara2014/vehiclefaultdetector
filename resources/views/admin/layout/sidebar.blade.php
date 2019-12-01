@@ -27,24 +27,28 @@
 
       </li>
 
-      @if (Auth::user()->role->id==1)
+      {{-- @if (Auth::user()->role->id==1) --}}
       <li><a href="{{ route('category.index') }}"><i class="fa fa-th"></i> Category</a></li>
-      @endif
+      <li><a href="{{ route('makes.index') }}"><i class="fa fa-tags"></i> Vehicle Make</a></li>
+      <li><a href="{{ route('vehicles.index') }}"><i class="fa fa-car"></i> Vehicles</a></li>
+      <li><a href="{{ route('faults.index') }}"><i class="fa fa-ticket"></i> Faults</a></li>
+      <li><a href="{{ route('complains.index') }}"><i class="fa fa-comments"></i> Complains</a></li>
+      {{-- @endif --}}
 
-      <li><a href="{{route('user.profile')}}"><i class="fa fa-picture-o"></i> My Profile</a></li>
+      {{-- <li><a href="{{route('user.profile')}}"><i class="fa fa-picture-o"></i> My Profile</a></li> --}}
 
-      {{-- for artisans and Admin only --}}
+      {{-- for Staff and Admin only --}}
       @if (Auth::user()->role->id==2||Auth::user()->role->id==1)
-      <li><a href="{{route('skill.index')}}"><i class="fa fa-wrench"></i> Skills</a></li>
+      {{-- <li><a href="{{route('skill.index')}}"><i class="fa fa-wrench"></i> Skills</a></li> --}}
 
       @endif
-      <li><a href="{{route('artisans.index')}}"><i class="fa fa-ge"></i> Artisans</a></li>
+      {{-- <li><a href="{{route('artisans.index')}}"><i class="fa fa-ge"></i> Artisans</a></li> --}}
 
       {{-- for Customer and Admin only --}}
       @if (Auth::user()->role->id==3||Auth::user()->role->id==1)
-      <li><a href="{{route('customers.index')}}"><i class="fa fa-users"></i> Customers</a></li>
+      {{-- <li><a href="{{route('customers.index')}}"><i class="fa fa-users"></i> Customers</a></li> --}}
       @endif
-      <li><a href="{{route('comment.index')}}"><i class="fa fa-comment-o"></i> Comments</a></li>
+      {{-- <li><a href="{{route('comment.index')}}"><i class="fa fa-comment-o"></i> Comments</a></li> --}}
 
       {{-- only for Admin --}}
       @if (Auth::user()->role->id==1)

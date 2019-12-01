@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Artisans Hub | Dashboard</title>
+    <title>VehicleFaultDetector | Dashboard</title>
 
     <link rel="shortcut icon" type="image/png" href="{{url('bootstrap_assets/images/','artisans_logo.png')}}"/>
 
@@ -64,9 +64,9 @@
         <!-- Logo -->
         <a href="index2.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>Artisans</b>Hub</span>
+          <span class="logo-mini"><b>VehicleFault</b>Detector</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>artisanshub</b></span>
+          <span class="logo-lg"><b>vehiclefaultdetector</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -98,7 +98,7 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="{{route('user.profile')}}" class="btn btn-default btn-flat">Profile</a>
+                      <a href="#" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
                       <form id="logout-user" style="display: none" action="{{ route('user.logout') }}" method="post">
