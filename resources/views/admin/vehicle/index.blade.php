@@ -57,6 +57,7 @@
                                     <td>{{$vehicle->model}}</td>
                                     <td>{{$vehicle->engine}}</td>
                                     <td>{{$vehicle->drivetraincount}}</td>
+                                    <td>{{$vehicle->doorcount}}</td>
                                     <td>{{$vehicle->cylindernum}}</td>
                                 <td><a href="{{ route('vehicles.edit',$vehicle->id) }}"><span class="fa fa-edit fa-2x text-primary"></span></a></td>
                                     <td>

@@ -8,8 +8,8 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Category
-            <small>All Categories</small>
+            Fault
+            <small>All Faults</small>
           </h1>
           {{-- <ol class="breadcrumb">
               <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -24,12 +24,12 @@
     <!-- Left col -->
     <section class="col-lg-12 connectedSortable">
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
-           <span class="fa fa-plus"></span> Add Category
+           <span class="fa fa-plus"></span> Add Fault
         </button>
         <br><br>
 
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-12">
 
                 <div class="box">
                     <!-- /.box-header -->
@@ -37,27 +37,41 @@
                         <table id="example1" class="table table-bordered table-striped table-responsive">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Vehicle</th>
+                                    <th>Problem</th>
+                                    <th>Cause</th>
+                                    <th>Solution</th>
+                                    <th>Created By</th>
+                                    <th>View</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($categories as $category)
+                                @foreach ($faults as $fault)
                                 <tr>
-                                    <td>{{$category->name}}</td>
-                                <td><a href="{{ route('category.edit',$category->id) }}"><span class="fa fa-edit fa-2x text-primary"></span></a></td>
+                                    <td>{{$fault->category->name}}</td>
+                                    <td>{{$fault->vehicle->make->name.' - '.$fault->vehicle->model.' : '.$fault->vehicle->serialnum}}</td>
+                                    <td>{{$fault->problem}}</td>
+                                    <td>{{$fault->cause}}</td>
+                                    <td>{{$fault->solution}}</td>
+                                    <td>{{$fault->user->lastname.' - '.$fault->user->firstname}}</td>
+                                    <td><a href="{{ route('faults.show',$fault->id) }}"><span
+                                        class="fa fa-eye fa-2x text-primary"></span></a></td>
+                                    
+                                <td><a href="{{ route('faults.edit',$fault->id) }}"><span class="fa fa-edit fa-2x text-primary"></span></a></td>
                                     <td>
-                                        <form id="delete-form-{{$category->id}}" style="display: none"
-                                            action="{{ route('category.destroy',$category->id) }}" method="post">
+                                        <form id="delete-form-{{$fault->id}}" style="display: none"
+                                            action="{{ route('faults.destroy',$fault->id) }}" method="post">
                                             {{ csrf_field() }}
                                             {{method_field('DELETE')}}
                                         </form>
                                         <a href="" onclick="
                                                             if (confirm('Are you sure you want to delete this?')) {
                                                                 event.preventDefault();
-                                                            document.getElementById('delete-form-{{$category->id}}').submit();
+                                                            document.getElementById('delete-form-{{$fault->id}}').submit();
                                                             } else {
                                                                 event.preventDefault();
                                                             }
@@ -70,7 +84,13 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Name</th>
+                                        <th>Category</th>
+                                    <th>Vehicle</th>
+                                    <th>Problem</th>
+                                    <th>Cause</th>
+                                    <th>Solution</th>
+                                    <th>Created By</th>
+                                    <th>View</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -88,16 +108,54 @@
         <div class="modal fade" id="modal-default">
             <div class="modal-dialog">
 
-                <form action="{{ route('category.store') }}" method="post">
+                <form action="{{ route('faults.store') }}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Add Category</h4>
+                            <h4 class="modal-title"><span class="fa fa-ticket"></span> Add Fault</h4>
                         </div>
                         <div class="modal-body">
-                            <input type="text" class="form-control" name="name" placeholder="Category Name">
+                                <div class="form-group">
+                                        <label for="">Vehicle Part</label>
+                                        <select name="category_id" class="form-control">
+                                            <option selected="disabled">Select Vehicle Part</option>
+                                            @foreach ($categories as $category)
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                <div class="form-group">
+                                        <label for="">Vehicle</label>
+                                        <select name="vehicle_id" class="form-control">
+                                            <option selected="disabled">Select Vehicle</option>
+                                            @foreach ($vehicles as $vehicle)
+                                            <option value="{{$vehicle->id}}">{{$vehicle->make->name.' - '.$vehicle->model.' : '.$vehicle->serialnum}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                            <label for="">Problem</label>
+                                        <input type="text" class="form-control" name="problem" placeholder="Vehicle Problem">
+                                    </div> 
+
+                                    <div class="form-group">
+                                            <label for="">Cause</label>
+                                            <textarea name="cause" class="form-control" cols="10" rows="3"></textarea>
+                                        </div>
+                                    <div class="form-group">
+                                            <label for="">Soultion</label>
+                                            <textarea name="solution" class="form-control" cols="10" rows="3"></textarea>
+                                        </div>
+                                        <div>
+                                            <label for="">Upload Faulty Vehicle part image</label>
+                                            <input type="file" name="imagename">
+                                        </div>  
+                                        
+                                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                    
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

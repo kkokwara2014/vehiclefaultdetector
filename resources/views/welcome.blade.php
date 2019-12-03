@@ -1,4 +1,4 @@
-<!doctype html>
+{{-- <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -96,4 +96,106 @@
             </div>
         </div>
     </body>
+</html> --}}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Vehicle Fault Detection System</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{{asset('bootstrap_assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">VehicleFaultDetector</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+                @if (Route::has('login'))
+                
+                    @auth
+                    <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/home') }}">Home</a>
+                          </li>
+                    @else
+                    <li class="nav-item">
+                            
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                          </li>
+
+                        @if (Route::has('register'))
+                        <li class="nav-item">
+                                
+                                <a class="nav-link" href="{{ route('register') }}">Register</a>
+                              </li>
+                        @endif
+                    @endauth
+               
+            @endif
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+    <br>
+    <div class="row">
+      <div class="col-md-8">
+          <h3>Vehicle Faults</h3>
+        @foreach($faults as $fault)
+          <div class="card card-primary">
+            <div class="card-body">
+                 <div class="row">
+                        <div class="col-md-5">
+                                <img src="{{url('vehicleparts_images',$fault->imagename)}}" alt=""
+                                    class="img-responsive img-rounded" width="150" height="150">
+                            </div>
+                            <div class="col-md-7">
+                                <h4>{{$fault->category->name}}</h4>
+                                <div>Vehicle : {{$fault->vehicle->make->name.' - '.$fault->vehicle->model.' : '.$fault->vehicle->serialnum}} </div>
+                                        <div>Category : {{$fault->category->name}} </div>
+                                        <div>Problem : {{$fault->problem}} </div>
+
+                                        <div style="margin-right:10px;">
+                                            
+                                            <a href="#" class="btn btn-primary btn-sm">View details</a>
+                                        </div>
+                            </div>
+                 </div>
+            </div>
+        </div>
+        @endforeach
+
+
+      </div>
+      <div class="col-md-4">
+            <h3>Useful Links</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{asset('bootstrap_assets/vendor/jquery/jquery.slim.min.js')}}"></script>
+  <script src="{{asset('bootstrap_assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+</body>
+
 </html>
+

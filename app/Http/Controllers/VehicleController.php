@@ -42,7 +42,19 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'make_id' => 'required',
+            'serialnum' => 'required',
+            'model' => 'required',
+            'engine' => 'required',
+            'drivetraincount' => 'required',
+            'doorcount' => 'required',
+            'cylindernum' => 'required',
+        ]);
+
+        Vehicle::create($request->all());
+
+        return back();
     }
 
     /**
@@ -64,7 +76,11 @@ class VehicleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = Auth::user();
+
+        $vehicles = Vehicle::where('id', $id)->first();;
+        $makes=Make::orderBy('name','asc')->get();
+        return view('admin.vehicle.edit',compact('vehicles','makes','user'));
     }
 
     /**
@@ -76,7 +92,28 @@ class VehicleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'make_id' => 'required',
+            'serialnum' => 'required',
+            'model' => 'required',
+            'engine' => 'required',
+            'drivetraincount' => 'required',
+            'doorcount' => 'required',
+            'cylindernum' => 'required',
+        ]);
+
+        $vehicle = Vehicle::find($id);
+        $vehicle->make_id = $request->make_id;
+        $vehicle->serialnum = $request->serialnum;
+        $vehicle->model = $request->model;
+        $vehicle->engine = $request->engine;
+        $vehicle->drivetraincount = $request->drivetraincount;
+        $vehicle->doorcount = $request->doorcount;
+        $vehicle->cylindernum = $request->cylindernum;
+
+        $vehicle->save();
+
+        return redirect(route('vehicles.index'));
     }
 
     /**
@@ -87,6 +124,7 @@ class VehicleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $vehicles = Vehicle::where('id', $id)->delete();
+        return redirect()->back();
     }
 }
