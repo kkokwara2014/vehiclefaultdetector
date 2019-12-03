@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Illuminate\Http\Request;
+
 class LoginController extends Controller
 {
     /*
@@ -50,10 +52,26 @@ class LoginController extends Controller
         return redirect('/');
     }
 
-    public function userLogout()
+    // public function userLogout()
+    // {
+    //     $this->guard()->logout();
+
+    //     return redirect(url('/'));
+    // }
+    public function userLogout(Request $request)
     {
         $this->guard()->logout();
+        $request->session()->invalidate();
+        
+        return redirect(route('index'));
+    }
 
-        return redirect(url('/'));
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->role_id == 1 || $user->role_id == 2) {
+            return redirect('/dashboard');
+        } else if ($user->role_id == 3) {
+            return redirect('/');
+        }
     }
 }
