@@ -14,7 +14,7 @@
 //     return view('welcome');
 // });
 
-Route::get('/','FrontController@index');
+Route::get('/','FrontController@index')->name('index');
 
 // Auth::routes();
 

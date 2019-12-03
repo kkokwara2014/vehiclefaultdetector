@@ -8,12 +8,12 @@
         <!-- small box -->
         <div class="small-box bg-aqua">
           <div class="inner">
-          <h3>{{$artisans}}</h3>
+          <h3>{{$vehicles}}</h3>
   
-            <p>Artisans</p>
+            <p>Vehicles</p>
           </div>
           <div class="icon">
-            <i class="fa fa-file-text-o"></i>
+            <i class="fa fa-car"></i>
           </div>
           <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
@@ -24,12 +24,12 @@
         <!-- small box -->
         <div class="small-box bg-green">
           <div class="inner">
-            <h3>{{$customers}}</h3>
+            <h3>{{$faults}}</h3>
   
-            <p>Customers</p>
+            <p>Faults</p>
           </div>
           <div class="icon">
-            <i class="fa fa-users"></i>
+            <i class="fa fa-tag"></i>
           </div>
           <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
@@ -39,12 +39,12 @@
         <!-- small box -->
         <div class="small-box bg-yellow">
           <div class="inner">
-            <h3>{{$transactions}}</h3>
+            <h3>{{$complains}}</h3>
   
-            <p>Transactions</p>
+            <p>Complains</p>
           </div>
           <div class="icon">
-            <i class="fa fa-graduation-cap"></i>
+            <i class="fa fa-comments-o"></i>
           </div>
           <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
@@ -55,7 +55,7 @@
         <!-- small box -->
         <div class="small-box bg-maroon-active">
           <div class="inner">
-            <h3>{{$admins}}</h3>
+          <h3>{{$admins}}</h3>
   
             <p>Admins</p>
           </div>

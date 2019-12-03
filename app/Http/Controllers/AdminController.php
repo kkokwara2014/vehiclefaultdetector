@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Complain;
+use App\Fault;
+use App\User;
+use App\Vehicle;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -15,8 +19,13 @@ class AdminController extends Controller
     public function index()
     {
         $user = Auth::user();
+
+        $admins=User::where('role_id',1)->get()->count();
+        $vehicles=Vehicle::count();
+        $faults=Fault::count();
+        $complains=Complain::count();
        
-        return view('admin.index',compact('user'));
+        return view('admin.index',compact('user','admins','vehicles','faults','complains'));
     }
 
     /**

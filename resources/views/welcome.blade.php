@@ -132,27 +132,34 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        @if (Route::has('login'))
-
-                        @auth
+                        @if (Auth::check())
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/home') }}">Home</a>
+                            <form id="logout-user" style="display: none" action="{{ route('user.logout') }}"
+                                method="post">
+                                {{ csrf_field() }}
+
+                            </form>
+
+                            <a class="nav-link" href="" onclick="
+                                      if (confirm('Are you sure you want to logout?')) {
+                                          event.preventDefault();
+                                      document.getElementById('logout-user').submit();
+                                      } else {
+                                          event.preventDefault();
+                                      }
+                                  ">Log out</a>
+                            {{-- <a class="nav-link" href="{{route('user.logout')}}"><i class="fa fa-sign-out"></i> Sign --}}
+                                {{-- Out</a> --}}
                         </li>
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                            <a class="nav-link" href="{{route('login')}}"> Login</a>
                         </li>
+                        @endif
 
-                        @if (Route::has('register'))
                         <li class="nav-item">
-
                             <a class="nav-link" href="{{ route('register') }}">Register</a>
                         </li>
-                        @endif
-                        @endauth
-
-                        @endif
-
                     </ul>
                 </div>
             </div>
