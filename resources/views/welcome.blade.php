@@ -208,6 +208,7 @@
 
                                     @endif
                                     <br>
+                                    {{$fault->review as $review}}
                                     <star-rating></star-rating>
 
                                 </div>

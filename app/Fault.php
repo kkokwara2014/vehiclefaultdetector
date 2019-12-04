@@ -19,7 +19,7 @@ class Fault extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function faultreview(){
+    public function review(){
         return $this->hasMany(Faultreview::class);
     }
 }
