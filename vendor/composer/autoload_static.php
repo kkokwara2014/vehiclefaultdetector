@@ -416,6 +416,7 @@ class ComposerStaticInita34766bd4e05ebbc3995ee087fabeb57
         'App\\Http\\Controllers\\ComplainController' => __DIR__ . '/../..' . '/app/Http/Controllers/ComplainController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FaultController' => __DIR__ . '/../..' . '/app/Http/Controllers/FaultController.php',
+        'App\\Http\\Controllers\\FaultreviewController' => __DIR__ . '/../..' . '/app/Http/Controllers/FaultreviewController.php',
         'App\\Http\\Controllers\\FrontController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrontController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\MakeController' => __DIR__ . '/../..' . '/app/Http/Controllers/MakeController.php',
