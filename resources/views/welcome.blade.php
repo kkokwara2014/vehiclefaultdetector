@@ -93,10 +93,10 @@
                                     <div>Solution : {{$fault->solution}} </div>
                                     <div>
 
-                                        <a href="#" class="btn btn-success btn-sm" data-toggle="modal"
+                                        {{-- <a href="#" class="btn btn-success btn-sm" data-toggle="modal"
                                             data-target="#modal-default">
                                             Write a review
-                                        </a>
+                                        </a> --}}
                                         <br>
                                         <div id="app">
                                             <star-rating @rating-selected="rating = $event" :rating="rating">
