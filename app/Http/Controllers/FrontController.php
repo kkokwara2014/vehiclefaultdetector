@@ -10,7 +10,7 @@ class FrontController extends Controller
 {
     public function index(){
 
-        $faults=Fault::orderBy('created_at','desc')->paginate(2);
+        $faults=Fault::orderBy('created_at','desc')->paginate(5);
 
         return view('welcome',compact('faults'));
     }

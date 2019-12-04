@@ -118,6 +118,9 @@
         <!-- Bootstrap core CSS -->
         <link href="{{asset('bootstrap_assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
+        {{-- Vue Star-rating --}}
+        <script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>
+
     </head>
 
     <body>
@@ -210,9 +213,9 @@
                                     <p></p>
                                     @forelse ($fault->review as $review)
                                     <p style="background-color: green; color: cornsilk;">{{ $review->headline }}</p>
-                                        
+
                                     @empty
-                                        No Review yet.
+                                    No Review yet.
                                     @endforelse
                                     {{-- <star-rating></star-rating> --}}
 
@@ -281,6 +284,16 @@
         </div>
 
 
+        <script>
+
+            new Vue({
+            el: '#app',
+            components: {
+                Vue.component('star-rating', VueStarRating.default);
+                
+                }
+            })
+        </script>
 
 
         <!-- Bootstrap core JavaScript -->
