@@ -207,9 +207,14 @@
                                     </div>
 
                                     @endif
-                                    <br>
-                                    {{$fault->review as $review}}
-                                    <star-rating></star-rating>
+                                    <p></p>
+                                    @forelse ($fault->review as $review)
+                                    <p style="background-color: green; color: cornsilk;">{{ $review->headline }}</p>
+                                        
+                                    @empty
+                                        No Review yet.
+                                    @endforelse
+                                    {{-- <star-rating></star-rating> --}}
 
                                 </div>
                             </div>
