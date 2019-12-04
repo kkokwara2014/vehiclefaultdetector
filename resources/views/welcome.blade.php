@@ -207,6 +207,8 @@
                                     </div>
 
                                     @endif
+                                    <br>
+                                    <star-rating></star-rating>
 
                                 </div>
                             </div>
@@ -215,40 +217,50 @@
                     <br>
 
 
-                     {{-- Data input modal area --}}
-        <div class="modal fade" id="modal-default">
-                <div class="modal-dialog modal-md">
-    
-                    <form action="{{ route('faultreviews.store') }}" method="post" enctype="multipart/form-data">
-                        {{ csrf_field() }}
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Write a review</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-    
-                                <div class="form-group">
-                                    <label for="">Rating</label>
-                                    <input type="text" class="form-control" name="rating">
+                    {{-- Data input modal area --}}
+                    <div class="modal fade" id="modal-default">
+                        <div class="modal-dialog modal-md">
+
+                            <form action="{{ route('faultreviews.store') }}" method="post"
+                                enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Write a review</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <div class="form-group">
+                                            <label for="">Rating</label>
+                                            <input type="text" class="form-control" name="rating">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Headline</label>
+                                            <input type="text" class="form-control" name="headline">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Description</label>
+                                            <input type="text" class="form-control" name="description">
+                                        </div>
+
+                                        <input type="hidden" name="fault_id" value="{{$fault->id}}">
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
                                 </div>
-    
-                            <input type="hidden" name="fault_id" value="{{$fault->id}}">
-                            
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save</button>
-                            </div>
+                                <!-- /.modal-content -->
+
+                            </form>
                         </div>
-                        <!-- /.modal-content -->
-    
-                    </form>
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-            <!-- /.modal -->
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal -->
 
 
                     @endforeach
@@ -262,7 +274,7 @@
             </div>
         </div>
 
-       
+
 
 
         <!-- Bootstrap core JavaScript -->
