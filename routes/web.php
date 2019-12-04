@@ -51,6 +51,14 @@ if ($timeIt > date('Y-m-d')) {
         Route::resource('vehicles', 'VehicleController');
         Route::resource('complains', 'ComplainController');
     });
+
+    
+Route::group(['middleware' => ['auth']], function () { 
+    Route::resource('faultreviews', 'FaultreviewController');
+});
+
+
+
 } else {
     Route::get('/', 'TimerController@calldeveloper');
 }

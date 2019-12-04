@@ -188,12 +188,26 @@
                                     <div>Category : {{$fault->category->name}} </div>
                                     <div>Problem : {{$fault->problem}} </div>
 
+                                    @if (auth()->check())
                                     <div>Cause : {{$fault->cause}} </div>
                                     <div>Solution : {{$fault->solution}} </div>
-
                                     <div>
-                                        <a href="#" class="btn btn-primary btn-sm">View details</a>
+
+                                        <button type="button" class="btn btn-success" data-toggle="modal"
+                                            data-target="#modal-default">
+                                            Write a review
+                                        </button>
+                                        {{-- <a href="#" data-toggle="modal" data-target="#myModal"
+                                            class="btn btn-success btn-sm">Write a review</a> --}}
                                     </div>
+
+                                    @else
+                                    <div>
+                                        <a href="{{route('login')}}" class="btn btn-primary btn-sm">View details</a>
+                                    </div>
+
+                                    @endif
+
                                 </div>
                             </div>
                         </div>
@@ -212,9 +226,54 @@
             </div>
         </div>
 
+        {{-- Data input modal area --}}
+        <div class="modal fade" id="modal-default">
+            <div class="modal-dialog">
+
+                <form action="{{ route('faultreviews.store') }}" method="post" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title"><span class="fa fa-ticket"></span> Add Fault</h4>
+                        </div>
+                        <div class="modal-body">
+                            
+
+                            <div class="form-group">
+                                <label for="">Problem</label>
+                                <input type="text" class="form-control" name="problem" placeholder="Vehicle Problem">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Cause</label>
+                                <textarea name="cause" class="form-control" cols="10" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Soultion</label>
+                                <textarea name="solution" class="form-control" cols="10" rows="3"></textarea>
+                            </div>
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+
+                </form>
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+
         <!-- Bootstrap core JavaScript -->
         <script src="{{asset('bootstrap_assets/vendor/jquery/jquery.slim.min.js')}}"></script>
         <script src="{{asset('bootstrap_assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
 
     </body>
 
