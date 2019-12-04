@@ -98,10 +98,15 @@
                                             Write a review
                                         </a> --}}
                                         <br>
+                                        @forelse ($faults as $fault)
+                                            
                                         <div id="app">
                                             <star-rating @rating-selected="rating = $event" :rating="rating">
                                             </star-rating>
                                         </div>
+                                        @empty
+                                            No review yet.
+                                        @endforelse
 
                                     </div>
 
