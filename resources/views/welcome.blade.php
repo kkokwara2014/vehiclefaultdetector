@@ -148,8 +148,9 @@
                                           event.preventDefault();
                                       }
                                   ">Log out</a>
-                            {{-- <a class="nav-link" href="{{route('user.logout')}}"><i class="fa fa-sign-out"></i> Sign --}}
-                                {{-- Out</a> --}}
+                            {{-- <a class="nav-link" href="{{route('user.logout')}}"><i class="fa fa-sign-out"></i> Sign
+                            --}}
+                            {{-- Out</a> --}}
                         </li>
                         @else
                         <li class="nav-item">
@@ -179,7 +180,7 @@
                                     <img src="{{url('vehicleparts_images',$fault->imagename)}}" alt=""
                                         class="img-responsive img-rounded" width="150" height="150">
                                 </div>
-                                <div class="col-md-7">
+                                <div class="col-md-7" style="margin-left: -18%">
                                     <h4>{{$fault->category->name}}</h4>
                                     <div>Vehicle :
                                         {{$fault->vehicle->make->name.' - '.$fault->vehicle->model.' : '.$fault->vehicle->serialnum}}
@@ -187,7 +188,10 @@
                                     <div>Category : {{$fault->category->name}} </div>
                                     <div>Problem : {{$fault->problem}} </div>
 
-                                    <div style="margin-left: 75%;">
+                                    <div>Cause : {{$fault->cause}} </div>
+                                    <div>Solution : {{$fault->solution}} </div>
+
+                                    <div>
                                         <a href="#" class="btn btn-primary btn-sm">View details</a>
                                     </div>
                                 </div>
