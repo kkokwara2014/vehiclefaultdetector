@@ -15,6 +15,7 @@
 // });
 
 Route::get('/','FrontController@index')->name('index');
+Route::get('vehicle/faults','FrontController@faults')->name('faults');
 
 // Auth::routes();
 
